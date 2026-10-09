@@ -23,9 +23,65 @@ button,.cta{background:#2789e8;color:#fff;border-radius:12px;padding:13px 20px;b
 .goal.piling{border-color:#ff665e;box-shadow:0 0 20px #e35e5355}
 @keyframes land{from{transform:translateY(-9px);opacity:.3}to{transform:translateY(0);opacity:1}}
 @media(max-width:600px){.goal{width:104px;padding:7px 4px}.goalTitle{font-size:10px}.pileCard{font-size:9px;padding:4px 2px}}
+
+/* Responsive embedded website layout */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{padding:12px;min-height:0}
+main{max-width:1100px}
+.top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px}
+.top h1{font-size:clamp(19px,2.5vw,28px);margin:3px 0}
+.top p{font-size:13px;margin:3px 0;line-height:1.3}
+.brand{font-size:18px;margin-bottom:4px}.brand span{font-size:8px;letter-spacing:2px}
+.key{font-size:11px}
+#timer{font-size:25px!important;padding:9px 13px!important}
+.panel{padding:12px;margin-top:9px;background:#112a3bdc}
+.stats{grid-template-columns:1fr 1fr 1fr;gap:10px}
+.stat strong{font-size:13px;margin-bottom:5px}
+.stat small{font-size:12px;margin-top:4px}
+.track{height:13px}
+.arena{height:clamp(290px,48vh,440px);margin-top:10px}
+.controls{margin-top:9px}.note{margin-top:7px;min-height:20px;font-size:12px}
+main>p.muted{margin:7px 0;font-size:11px}
+.overlay{padding:8px;overflow-y:auto}
+.overlay article{max-height:100%;overflow-y:auto;padding:16px 18px}
+.overlay h2{font-size:clamp(18px,3vw,25px)}
+.overlay p{font-size:14px;line-height:1.4}
+@media(max-width:650px){
+ body{padding:6px}
+ .top{gap:5px;grid-template-columns:minmax(0,1fr) auto}
+ .brand{font-size:14px;margin-bottom:2px}.brand span{font-size:7px;letter-spacing:1.5px}
+ .key{font-size:9px}
+ .top h1{font-size:17px;margin:3px 0}
+ .top p{font-size:11px;line-height:1.22;margin:2px 0}
+ #timer{font-size:21px!important;padding:7px 8px!important;border-radius:9px!important}
+ .panel{margin-top:5px;padding:7px;border-radius:10px}
+ .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+ .stat{padding:0;min-width:0}
+ .stat strong{font-size:10px;line-height:1.1;min-height:24px;margin-bottom:3px}
+ .stat small{font-size:10px;line-height:1.15;margin-top:3px}
+ .track{height:10px}
+ .arena{height:clamp(320px,53dvh,470px);margin-top:7px;border-radius:9px}
+ .goal{width:76px!important;padding:5px 3px!important;gap:3px;border-radius:11px}
+ .goalTitle{font-size:8px!important;letter-spacing:0;line-height:1.15}
+ .pile{padding:2px;gap:1px}
+ .pileCard{font-size:7px!important;min-height:14px;padding:2px 1px!important}
+ .pileCount{font-size:9px;padding:3px 1px}
+ .moving{width:96px!important;min-height:46px;padding:7px 3px;font-size:11px;line-height:1.15;border-radius:9px}
+ .controls{margin-top:6px;gap:5px}
+ .controls button{padding:7px 10px;font-size:12px}
+ .controls .muted{font-size:9px;flex:1}
+ .note{font-size:10px;min-height:15px;margin-top:5px}
+ main>p.muted{font-size:9px;line-height:1.25;margin:4px 0}
+ .overlay{padding:6px}
+ .overlay article{padding:12px 10px;border-radius:12px;max-height:100%;overflow-y:auto}
+ .overlay h2{font-size:18px;margin:0 0 7px}
+ .overlay p{font-size:12px;margin:6px 0;line-height:1.3}
+ .overlay button{font-size:13px;padding:10px 12px}
+}
+@media(max-width:650px) and (max-height:700px){.arena{height:310px}.top p{display:none}}
 </style></head><body><main><div class="top"><div><div class="brand">WholeWell <span>A W A R E N E S S</span></div><div class="key">HUMAN PRESSURE DYNAMICS</div><h1>Can You Maintain Your Capacity?</h1><p>Complete incoming demands. Catch recovery opportunities before they pass. What happens to your capacity?</p></div><div style="font-size:30px;font-weight:800;background:#0b2537d9;border:1px solid #ffffff55;padding:12px 22px;border-radius:16px;font-variant-numeric:tabular-nums" id="timer">00:30</div></div><section class="panel"><div class="stats"><div class="stat"><strong>Demands completed</strong><div class="track"><div class="fill" id="demandBar"></div></div><small id="demandText">0 completed</small></div><div class="stat"><strong>Available capacity</strong><div class="track"><div class="fill capacity" id="capacityBar"></div></div><small id="capacityText">100%</small></div><div class="stat"><strong>Recovery taken</strong><div class="track"><div class="fill" id="recoveryBar"></div></div><small id="recoveryText">0 breaks</small></div></div><div class="arena" id="arena"><div class="lane"></div><div class="goal" id="goal"><div class="goalTitle">DON'T LET<br>THEM GET HERE</div><div class="pile" id="pile"></div><div class="pileCount" id="pileCount">0 incomplete</div></div><div class="overlay" id="overlay"><article id="overlayContent"><h2>30 seconds. Complete 32 demands without exhausting capacity.</h2><p>Demands arrive quickly. Click or tap to complete as many as possible before they pass. Catch green recovery opportunities to restore capacity. Your target: 32 completed demands with capacity remaining after 30 seconds.</p><button id="start">Start experience</button></article></div></div><div class="controls"><button class="secondary" id="reset">Restart</button><span class="muted">Illustrative learning simulation, not a physiological assessment.</span></div><div class="note" id="note" aria-live="polite">Ready to begin.</div></section><p class="muted">HPD explores how demand, capacity utilisation and recovery interact. This short demonstration introduces one relationship from the full Capacity Regulation Experience.</p></main><script>
-(()=>{const $=id=>document.getElementById(id),arena=$('arena'),overlay=$('overlay');let active=false,remaining=30,capacity=100,completed=0,breaks=0,missed=0,missedNames=[],items=[],last=0,spawnDemand=0,spawnRecovery=0,raf=0,seq=0,spawned=0;const names=['Email backlog','Urgent request','Customer query','Deadline','Unexpected task','Team request','New priority','Problem to solve'];function update(){ $('timer').textContent='00:'+String(Math.max(0,Math.ceil(remaining))).padStart(2,'0');$('timer').style.color=remaining<=10?'#ffba8e':'#ffffff';$('demandBar').style.width=Math.min(100,completed/32*100)+'%';$('demandText').textContent=completed+' / 32 completed';$('capacityBar').style.width=capacity+'%';$('capacityBar').style.background=capacity<25?'#ed786d':capacity<50?'#efbd68':'#64c6a3';$('capacityText').textContent=Math.round(capacity)+'%';$('recoveryBar').style.width=Math.min(100,breaks*20)+'%';$('recoveryText').textContent=breaks+' breaks'}function pileDemand(name){missedNames.push(name);const pile=$('pile');const card=document.createElement('div');card.className='pileCard';card.textContent=name;pile.appendChild(card);while(pile.children.length>16)pile.firstElementChild.remove();$('pileCount').textContent=missed+' incomplete';$('goal').classList.add('piling')}function msg(s){$('note').textContent=s}function remove(it){it.el.remove();items=items.filter(x=>x!==it)}function spawn(type){let el=document.createElement('button');el.type='button';el.className='moving'+(type==='recovery'?' recovery':'');el.textContent=type==='recovery'?'✚ Take a break':names[Math.floor(Math.random()*names.length)];let w=innerWidth<600?118:150;let top=16+Math.random()*(arena.clientHeight-85);let it={id:++seq,type,x:arena.clientWidth+20,y:top,speed:type==='recovery'?195:210+Math.random()*75,el,w};el.style.top=top+'px';arena.appendChild(el);items.push(it);el.addEventListener('click',()=>{if(!active)return;if(type==='recovery'){breaks++;capacity=Math.min(100,capacity+23);msg('Recovery taken: some capacity restored.')}else{completed++;capacity=Math.max(0,capacity-9);msg('Demand completed: capacity utilised.')}remove(it);update();if(capacity===0)finish(true)});}
-function tick(t){if(!active)return;let dt=Math.min(.06,(t-last)/1000||0);last=t;remaining-=dt;spawnDemand+=dt;spawnRecovery+=dt;if(spawnDemand>0.67){spawn('demand');spawned++;spawnDemand=0}if(spawnRecovery>2.35){spawn('recovery');spawnRecovery=0}for(let it of [...items]){it.x-=it.speed*dt;it.el.style.transform=`translateX(${it.x}px)`;if(it.x<100-it.w){if(it.type==='demand'){missed++;pileDemand(it.el.textContent);msg('A demand passed without completion and joined the backlog.')}remove(it)}}update();if(remaining<=0){finish(false);return}raf=requestAnimationFrame(tick)}function finish(depleted){
+(()=>{const $=id=>document.getElementById(id),arena=$('arena'),overlay=$('overlay');let active=false,remaining=30,capacity=100,completed=0,breaks=0,missed=0,missedNames=[],items=[],last=0,spawnDemand=0,spawnRecovery=0,raf=0,seq=0,spawned=0;const names=['Email backlog','Urgent request','Customer query','Deadline','Unexpected task','Team request','New priority','Problem to solve'];function update(){ $('timer').textContent='00:'+String(Math.max(0,Math.ceil(remaining))).padStart(2,'0');$('timer').style.color=remaining<=10?'#ffba8e':'#ffffff';$('demandBar').style.width=Math.min(100,completed/32*100)+'%';$('demandText').textContent=completed+' / 32 completed';$('capacityBar').style.width=capacity+'%';$('capacityBar').style.background=capacity<25?'#ed786d':capacity<50?'#efbd68':'#64c6a3';$('capacityText').textContent=Math.round(capacity)+'%';$('recoveryBar').style.width=Math.min(100,breaks*20)+'%';$('recoveryText').textContent=breaks+' breaks'}function pileDemand(name){missedNames.push(name);const pile=$('pile');const card=document.createElement('div');card.className='pileCard';card.textContent=name;pile.appendChild(card);while(pile.children.length>16)pile.firstElementChild.remove();$('pileCount').textContent=missed+' incomplete';$('goal').classList.add('piling')}function msg(s){$('note').textContent=s}function remove(it){it.el.remove();items=items.filter(x=>x!==it)}function spawn(type){let el=document.createElement('button');el.type='button';el.className='moving'+(type==='recovery'?' recovery':'');el.textContent=type==='recovery'?'✚ Take a break':names[Math.floor(Math.random()*names.length)];let mobile=arena.clientWidth<650;let w=mobile?96:150;let top=12+Math.random()*Math.max(1,arena.clientHeight-(mobile?65:85));let it={id:++seq,type,x:arena.clientWidth+20,y:top,speed:(type==='recovery'?195:210+Math.random()*75)*Math.min(1,Math.max(.52,arena.clientWidth/700)),el,w};el.style.top=top+'px';arena.appendChild(el);items.push(it);el.addEventListener('click',()=>{if(!active)return;if(type==='recovery'){breaks++;capacity=Math.min(100,capacity+23);msg('Recovery taken: some capacity restored.')}else{completed++;capacity=Math.max(0,capacity-9);msg('Demand completed: capacity utilised.')}remove(it);update();if(capacity===0)finish(true)});}
+function tick(t){if(!active)return;let dt=Math.min(.06,(t-last)/1000||0);last=t;remaining-=dt;spawnDemand+=dt;spawnRecovery+=dt;if(spawnDemand>0.67){spawn('demand');spawned++;spawnDemand=0}if(spawnRecovery>2.35){spawn('recovery');spawnRecovery=0}for(let it of [...items]){it.x-=it.speed*dt;it.el.style.transform=`translateX(${it.x}px)`;if(it.x<$('goal').offsetWidth-it.w){if(it.type==='demand'){missed++;pileDemand(it.el.textContent);msg('A demand passed without completion and joined the backlog.')}remove(it)}}update();if(remaining<=0){finish(false);return}raf=requestAnimationFrame(tick)}function finish(depleted){
 active=false;cancelAnimationFrame(raf);
 const maintained=capacity>0&&!depleted;
 const target=completed>=32;
